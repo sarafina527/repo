@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>历史纪录</title>
+	<link rel="stylesheet" type="text/css" href="css/reset.css">
+	<link rel="stylesheet" type="text/css" href="css/layout.css">
+</head>
+<body>
+	<div class="header">
+		<div class="logo"><a href="#"><img src="img/HaiCloudlogo.png" height="50px"/>智能检测系统</a></div>
+		<div class="nav">
+			<ul>
+				<li><a href="#">监控中心</a></li>
+				<li><a href="#">节点管理</a></li>
+				<li><a href="#">开发者中心</a></li>
+				<li><a href="#">运行记录</a></li>
+				<li class="user"><a href="#">Admin</a></li>
+				<li><a href="#">退出</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="wrap">
+		<div class="sidebar">
+			<ul class="nodelist">
+				<li class="active"><a href="#">节点一</a></li>
+				<li><a href="#">节点二</a></li>
+				<li><a href="#">节点三</a></li>
+				<li><a href="#">节点四</a></li>
+			</ul>		
+		</div>
+		<div class="content">
+			<ul class="tab-bar">
+				<li><a href="">实时监控</a></li>
+				<li class="active"><a href="">历史数据</a></li>
+			</ul>
+			<!-- 日期查询 -->
+			<form action="" class="search">
+				<div id="node_id">节点<input type="text" value="1" name="node_id" disabled=true></div>
+				<div class="">
+					<fieldset>
+						<span>起始日期：</span>			
+					    <input class="calendar" size="16" type="text" id="stdate" name="stdate">
+					    <span class="calendar-icon"></span>
+						<span>截至日期：</span>			
+					    <input class="calendar" size="16" type="text" id="enddate" name="enddate">
+					    <input type="submit" value="查询" >
+					</fieldset>
+						
+				</div>
+			</form>
+			<!-- 数据表 -->
+			<div class="data-table">
+				<table class="datalist" id="histable">
+					<!-- <caption>历史数据</caption> --> 
+					<thead>
+						<tr>
+							<th class="radius-l">序号</th>
+							<th><span>采集日期</span></th>
+							<th><span>采集时间</span></th>
+							<th><span>环境光照</span>(Lx)</th>
+							<th><span>环境温度</span>(°C)</th>
+							<th><span>环境湿度</span>(g/m3)</th>
+							<th><span>土壤温度</span>(°C)</th>
+							<th><span>土壤湿度</span>(g/m3)</th>
+							<th class="radius-r">监控状态</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>1</td>
+							<td>2016-05-11</td>
+							<td>21:19:22</td>
+							<td>7710.0</td>
+							<td>22.69</td>
+							<td>67.24</td>
+							<td>20.21</td>
+							<td>63.76</td>
+							<td>正常</td>
+						</tr>
+						<tr>
+							<td>2</td>
+							<td>2016-05-11</td>
+							<td>21:19:22</td>
+							<td>7710.0</td>
+							<td>22.69</td>
+							<td>67.24</td>
+							<td>20.21</td>
+							<td>63.76</td>
+							<td>正常</td>
+						</tr>
+						<tr>
+							<td>3</td>
+							<td>2016-05-11</td>
+							<td>21:19:22</td>
+							<td>7710.0</td>
+							<td>22.69</td>
+							<td>67.24</td>
+							<td>20.21</td>
+							<td>63.76</td>
+							<td>正常</td>
+						</tr>
+						<tr>
+							<td>4</td>
+							<td>2016-05-11</td>
+							<td>21:19:22</td>
+							<td>7710.0</td>
+							<td>22.69</td>
+							<td>67.24</td>
+							<td>20.21</td>
+							<td>63.76</td>
+							<td>正常</td>
+						</tr>
+						<tr>
+							<td>5</td>
+							<td>2016-05-11</td>
+							<td>21:19:22</td>
+							<td>7710.0</td>
+							<td>22.69</td>
+							<td>67.24</td>
+							<td>20.21</td>
+							<td>63.76</td>
+							<td>正常</td>
+						</tr>
+						<tr>
+							<td>6</td>
+							<td>2016-05-11</td>
+							<td>21:19:22</td>
+							<td>7710.0</td>
+							<td>22.69</td>
+							<td>67.24</td>
+							<td>20.21</td>
+							<td>63.76</td>
+							<td>正常</td>
+						</tr>
+						<tr>
+							<td>7</td>
+							<td>2016-05-11</td>
+							<td>21:19:22</td>
+							<td>7710.0</td>
+							<td>22.69</td>
+							<td>67.24</td>
+							<td>20.21</td>
+							<td>63.76</td>
+							<td>正常</td>
+						</tr>
+						<tr>
+							<td>8</td>
+							<td>2016-05-11</td>
+							<td>21:19:22</td>
+							<td>7710.0</td>
+							<td>22.69</td>
+							<td>67.24</td>
+							<td>20.21</td>
+							<td>63.76</td>
+							<td>正常</td>
+						</tr>
+						<tr>
+							<td>9</td>
+							<td>2016-05-11</td>
+							<td>21:19:22</td>
+							<td>7710.0</td>
+							<td>22.69</td>
+							<td>67.24</td>
+							<td>20.21</td>
+							<td>63.76</td>
+							<td>正常</td>
+						</tr>
+						<tr>
+							<td>10</td>
+							<td>2016-05-11</td>
+							<td>21:19:22</td>
+							<td>7710.0</td>
+							<td>22.69</td>
+							<td>67.24</td>
+							<td>20.21</td>
+							<td>63.76</td>
+							<td>正常</td>
+						</tr>
+					</tbody>
+				</table>
+				<form class="splitpage" action="#">
+					<input type="button" value="首页">
+					<input type="button" value="上一页">
+					<input type="button" value="下一页">
+					<input type="button" value="尾页">
+				</form>
+				<div class="export">
+					<a href="#"><input type="button" value="导出数据"></a>
+				</div>
+			</div>
+			<!-- 数据分析 -->
+			<div class="anlysis">
+				<p>数据分析</p>
+				<div class="light float-left clearfat">
+					<label for="">平均值</label>
+					<input type="text" value="22">
+					<label for="">最大值</label>
+					<input type="text" value="35">
+					<label for="">最小值</label>
+					<input type="text" value="16">
+				</div>
+				<div class="temp float-left">
+					<label for="">平均值</label>
+					<input type="text" value="22">
+					<label for="">最大值</label>
+					<input type="text" value="35">
+					<label for="">最小值</label>
+					<input type="text" value="16">
+
+				</div>
+				<div class="humi float-left">
+					<label for="">平均值</label>
+					<input type="text" value="22">
+					<label for="">最大值</label>
+					<input type="text" value="35">
+					<label for="">最小值</label>
+					<input type="text" value="16">
+				</div>
+				<div class="soiltemp float-left">
+
+					<label for="">平均值</label>
+					<input type="text" value="22">
+					<label for="">最大值</label>
+					<input type="text" value="35">
+					<label for="">最小值</label>
+					<input type="text" value="16">
+				</div>
+				<div class="soilhumi float-left">
+					<label for="">平均值</label>
+					<input type="text" value="22">
+					<label for="">最大值</label>
+					<input type="text" value="35">
+					<label for="">最小值</label>
+					<input type="text" value="16">
+				</div>
+			</div>
+
+		</div>
+	</div>
+	
+	<div class="footer">
+		<div class="copyright">
+             <!-- ©  -->2016 Najing Hadoop; user contributions licensed under 
+		</div>
+	</div>
+	
+	<script type="text/javascript" src="js/jquery-3.1.0.js"></script>
+	<script type="text/javascript" src="js/hisclick.js"></script>
+	<!-- 日期选择控件 -->
+	<script type="text/javascript" src="js/laydate.dev.js"></script>
+	<script type="text/javascript" src="js/common.js"></script>   
+    <script type="text/javascript">
+        laydate({
+            elem: '#stdate'
+        });
+        laydate({
+            elem: '#enddate'
+        });
+
+    </script>
+
+	<!-- 表格分行样式 -->	
+    <script type="text/javascript"> 
+		// window.onload = odd_even;
+		addLoadEvent(odd_even);
+		function odd_even(){ 
+			var table = document.getElementById("histable");
+			var trs=table.getElementsByTagName("tr");
+			for (var i=0;i<=trs.length;i++){
+				if(i==0){
+					trs[i].style.backgroundColor="#26B064";
+					trs[i].style.color="#fff";
+				}else if (i%2==0){
+					trs[i].style.backgroundColor="#DDEDFB";
+				}else 
+					trs[i].style.backgroundColor="#FFFFFF";
+			}
+		};  
+
+	</script> 
+</body>
+</html>

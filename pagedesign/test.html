@@ -1,0 +1,385 @@
+<script>
+	// alert(location.search);
+	// document.write(tribonacci([1,1,1],10));
+  // document.write(findNb(24723578342962));
+
+  // document.write(isIsogram("moOse"));
+
+function sumTwoSmallestNumbers(numbers) {  
+  var min=numbers[0],smin=numbers[1];
+  for(var i=1;i<numbers.length;i++){
+    if(numbers[i]<min){
+      smin = min;
+      min = numbers[i];
+    }else if(numbers[i]<smin){
+      smin = numbers[i];
+    }
+  }
+  return min+smin;
+};
+function tribonacci(signature,n){
+  var trib = new Array();
+  trib[0]=signature[0];
+  trib[1]=signature[1];
+  trib[2]=signature[2];
+  for(var i=3;i<n;i++){
+    trib[i]=trib[i-1]+trib[i-2]+trib[i-3];
+  }
+  return trib;
+}
+
+function findNb(m) {
+    // your code[n(n+1)/2]2 = m
+    sq = Math.sqrt(m);
+    if(m==sq^2){
+      nn1 = sq*2;
+      sqq = Math.sqrt(nn1);
+      for(var i=1;i<sqq;i++){
+        if(i*(i+1)==nn1){
+          return i;
+        }
+      }
+    }
+    return (-1);
+}
+
+function isIsogram(str){
+  str = str.toLowerCase(str);
+  var az = /[a-z]*/;
+  if(str.match(az)){
+    if(str.length == 0){
+      return true;
+    }else{
+      var map = new Object();
+      for(var i=0;i<str.length;i++){
+        if(map[str[i]]==1){
+          return false;
+        }else{
+          map[str[i]]=1;
+        }
+      }
+      return true;
+    }
+
+  }else{
+    return false;
+  }
+}
+
+function getCount(str) {
+  var vowelsCount = 0;
+  for(var i=0;i<str.length;i++){
+    if (str.charAt(i).match(/[aeiou]/i)) {
+      vowelsCount++;
+    }
+  }  
+  return vowelsCount;
+}
+
+/* Should return ᐃ type:
+  0 : if ᐃ cannot be made with given sides
+  1 : acute ᐃ
+  2 : right ᐃ
+  3 : obtuse ᐃ
+*/
+function triangleType(a, b, c){
+  var numarr = [a,b,c];
+  var sortnum = numarr.sort(function(a,b){return a-b});
+  var max=sortnum[2],min=sortnum[0],mid=numarr[1];
+  if(min+mid<=max){
+    return 0;
+  }
+  else if(min*min+mid*mid>max*max){
+    return 1;
+  }
+  else if(min*min+mid*mid==max*max){
+    return 2;
+  }
+  else{
+    return 3;
+  }
+}
+
+function decodeMorse(morseCode){
+  var decode =[
+                'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',
+                '1','2','3','4','5','6','7','8','9','0',
+                'AA','AR','AS','BK','BT','CT','SK','SOS',
+                '.',':',',',';','?','=',"'",'/','!','-','_','"','(',')','$','&','@','+'
+            ];
+  var encode =[
+                // letter
+                '.-','-...','-.-.','-..','.','..-.','--.','....','..','.---','-.-','.-..','--','-.','---','.--.','--.-','.-.','...','-','..-','...-','.--','-..-','-.--','--..',
+                // number 
+                '.----','..---','...--','....-','.....','-....','--...','---..','----.','-----',
+                // special charactor
+                '.-.-','.-.-.','.-...','-...-.-','-...-','-.-.-','...-.-','...---...',
+                // punctuation
+                '.-.-.-','---...','--..--','-.-.-.','..--..','-...-','.----.','-..-.','-.-.--','-....-','..--.-','.-..-.','-.--.','-.--.-','...-..-','.-...','.--.-.','.-.-.'
+            ];
+  var decodestr = "";
+  morseCode = morseCode.trim();
+  var words = morseCode.split('   ');
+  for(var i=0;i<words.length;i++){
+    var chars = words[i].split(" ");
+    for(var j=0;j<chars.length;j++){
+      if(encode.indexOf(chars[j])!=-1&&chars[j]!=""){
+        decodestr+=decode[encode.indexOf(chars[j])];
+      }      
+    }
+    if(i!=words.length-1){
+      decodestr+=" ";      
+    }
+
+  }
+  return decodestr;
+}
+
+
+function goodVsEvil(good, evil){
+  var goodWorth = [1,2,3,3,4,10];
+  var evilWorth = [1,2,2,2,3,5,10];
+  var goodArr = good.split(' ');
+  var evilArr = evil.split(' ');
+  var goodw=0,evilw=0;
+  for(var i=0;i<goodArr.length;i++){
+    goodw += goodArr[i]*goodWorth[i];
+  }
+  for(i=0;i<evilArr.length;i++){
+    evilw += evilArr[i]*evilWorth[i];
+  }
+  if(goodw == evilw){
+    return "Battle Result: No victor on this battle field";
+  }else if(goodw>evilw){
+    return "Battle Result: Good triumphs over Evil";
+  }else{
+    return  "Battle Result: Evil eradicates all trace of Good";
+  }
+}
+
+function dirReduc(arr){
+
+  for(var m=0;m<arr.length;m++){
+    m = reducPair(arr,m)-1;
+  }
+  return arr;
+}
+//当前项与下一项配合，若配上处理arr，向前移；若不配则向后移
+function reducPair(arr,i){
+  var o ={WEST:1,EAST:-1,NORTH:2,SOUTH:-2};
+  if (i<0) {
+    return 0;
+  };
+  if(o[arr[i]]+o[arr[i+1]]==0){
+    arr.splice(i,2);
+    return i-1;
+  }else{
+    return i+1;
+  }
+}
+
+/**
+ * Utility class for Harshad numbers (also called Niven numbers).
+ *
+ * @namespace Harshad
+ */
+var Harshad = ( function() {
+  'use strict';
+
+  return {
+    /**
+     * Returns true when the given number is a valid Harshad number.
+     *
+     * @param {Number} number The given number
+     * @returns {Boolean}
+     * @function Harshad.isValid
+     */
+    isValid: function( number ) {
+      var numIt = number;
+      var digits = new Array();
+      var remainder;
+      while(numIt!=0){
+        remainder = numIt%10;
+        digits.push(remainder);
+        numIt = parseInt(numIt/10);//可能是浮点，强制转整型
+      }
+      var sum = 0;
+      for(var i=0;i<digits.length;i++){
+        sum+=digits[i];
+      }
+      if(number%sum==0){
+        return true;
+      }else{
+        return false;
+      }
+    },
+    /**
+     * Gets the next Harshad number after the given number.
+     *
+     * @param {Number} number The given number
+     * @returns {Number}
+     * @function Harshad.getNext
+     */
+    getNext: function( number ) {
+      var next = number+1;
+      while(!Harshad.isValid(next)){
+        next++;
+      }
+      return next;
+    },
+    /**
+     * Returns the suite of Harshad numbers, starting after a given number.
+     *
+     * @param {Number} count The number of elements to return
+     * @param {Number} start The number after which the serie should start;
+     *  defaults to 0
+     * @returns {Array}
+     * @function Harshad.getSerie
+     */
+    getSerie: function( count, start ) {
+      if(start==undefined){//可能只传一个参数，会超时
+        start=0;
+      }
+      var harshadSerie = new Array();
+      while(count>0){
+        start = Harshad.getNext(start)
+        harshadSerie.push(start)
+        count--;
+      }
+      return harshadSerie;
+    }
+  };
+
+} () );
+
+var fibonacci = (function(n) {
+  var mem = new Array();
+  return function fibo(n){
+    var fibonaccin_1,fibonaccin_2;
+    if(n==0 || n == 1){
+      mem[n]=n;
+      return n;
+    } 
+    if(mem[n]!=undefined){
+      return mem[n];
+    }      
+    if(mem[n-1]!=undefined){
+      fibonaccin_1 = mem[n-1];
+    }else{
+      fibonaccin_1 = fibo(n-1);
+    }
+    if(mem[n-2]!=undefined){
+      fibonaccin_2 = mem[n-2];
+    }else{
+      fibonaccin_2 = fibo(n-2);
+    }
+    mem[n] = fibonaccin_1+fibonaccin_2;
+    return fibonaccin_1 + fibonaccin_2;
+  };
+    
+}());
+
+// function dblLinear(n) {
+//   var dblseq = new Array();
+//   var base = new Array();
+//   dblseq[0] = base[0] = 1;
+//   var minbase = base[0];
+//   var minindex;
+//   var l2,l3;
+//   while(dblseq.length<n*3){
+//     minbase=base[0];
+//     minindex = 0;
+//     for(var i =1;i<base.length;i++){
+//       if(base[i]<minbase){
+//         minbase = base[i];
+//         minindex = i;
+//       }
+//     }
+//     base.splice(minindex,1);
+//     var l2 = minbase*2+1;
+//     var l3 = minbase*3+1;
+//     dblseq.push(l2,l3);
+//     base.push(l2,l3);
+//   }
+//   dblseq.sort( function(a,b){return a-b;});
+//    console.log("dblseq="+dblseq);
+//    // 去重复
+//   for(i=1;i<dblseq.length;i++){
+//     if(dblseq[i-1]==dblseq[i]){
+//       dblseq.splice(i,1);
+//     }
+//   }
+//   return dblseq[n];
+// }
+function dblLinear(n) {
+  var dblseq = new Array();
+  dblseq[0] = 1;
+  var insertindex;//2x+1 insert position
+  var flag = 0;//move in the seq front
+  var l2,l3;
+  while(true){
+    var l2 = dblseq[flag]*2+1;
+    var l3 = dblseq[flag]*3+1;
+    if(l2>dblseq[n]){
+      break;
+    }
+    for(insertindex =dblseq.length-1;;insertindex--){
+      if(dblseq[insertindex]==l2){//repeat not insert
+        break;
+      }else if(dblseq[insertindex]<l2){//insert in the right place
+        dblseq.splice(insertindex+1,0,l2);
+        break;
+      }
+    }
+    dblseq.push(l3);
+    flag++;
+  }
+  return dblseq[n];
+}
+function validParentheses(parens){
+  var pattern = /.*\(\).*/;
+  var pa = /\(\)/g;
+  while(pattern.test(parens)){
+    parens = parens.replace(pa,"");  //注意不赋值的话源字符串不变
+  }
+   if(parens.length==0){
+     return true;
+   }else{
+     return false;
+   }
+}
+
+function calc(expr) {
+  expr = expr.trim();
+  var oppat = /[\+\-\*\/]/;
+  var seq = expr.split(' ');
+  var result;
+  if(expr.length==0){
+    return 0;
+  }
+  for(var i = 0;i<seq.length&&i>=0;i++){
+    if(oppat.test(seq[i])){
+      if(seq[i]=="+"){
+        result = parseFloat(seq[i-2])+parseFloat(seq[i-1]);
+      }else if(seq[i]=="-"){
+        result = parseFloat(seq[i-2])-parseFloat(seq[i-1]);
+      }else if(seq[i]=="*"){
+        result = parseFloat(seq[i-2])*parseFloat(seq[i-1]);
+      }else {
+        result = parseFloat(seq[i-2]) / parseFloat(seq[i-1]);
+      }
+      i=i-2;
+      seq.splice(i,3,result);
+    }
+  }
+  return parseFloat(seq[seq.length-1]);
+}
+ // document.write(decodeMorse('.'));
+  // document.write(" E E".trim().split(" "));
+ // document.write(triangleType(7,12,8));
+ // document.write(getCount("abracadabra"));
+
+// document.write(goodVsEvil('1 1 1 1 1 1', '1 1 1 1 1 1 1'));
+document.write(dirReduc(["NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST"]));
+
+</script>
